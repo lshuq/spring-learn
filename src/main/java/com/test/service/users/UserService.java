@@ -13,4 +13,14 @@ public class UserService {
     public List<User> getUsers() {
         return userMapper.selectByExample(new UserExample());
     }
+
+    public User getUserById(String id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
+
+    public Boolean ifUserExist(String id, String name) {
+        UserExample userExample = new UserExample();
+        userExample.or().andIdEqualTo(id).andNameEqualTo(name);
+        return userMapper.countByExample(userExample) == 0;
+    }
 }
