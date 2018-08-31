@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping(value = "/users",method = RequestMethod.GET)
 public class UserController {
     @Resource
     private UserService userService;
@@ -24,7 +24,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam(value = "id") String id, @RequestParam(value = "name") String name) {
+    public String login(String id, String name) {
+        System.out.println(id+" "+name);
         return userService.ifUserExist(id, name) ? "success" : "error";
     }
 }

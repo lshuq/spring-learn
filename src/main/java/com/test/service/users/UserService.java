@@ -21,6 +21,6 @@ public class UserService {
     public Boolean ifUserExist(String id, String name) {
         UserExample userExample = new UserExample();
         userExample.or().andIdEqualTo(id).andNameEqualTo(name);
-        return userMapper.countByExample(userExample) == 0;
+        return userMapper.countByExample(userExample) != 0;
     }
 }
